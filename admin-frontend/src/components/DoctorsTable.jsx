@@ -170,7 +170,7 @@ function DoctorsTable() {
                   </span>
                 </td>
                 <td>
-                  <button className="btn btn-sm" onClick={() => openEditModal(doctor)}>Edit</button>
+                  <button className="btn btn-sm btn-secondary" onClick={() => openEditModal(doctor)}>Edit</button>
                   <button className="btn btn-sm btn-danger" onClick={() => handleDelete(doctor._id)}>Delete</button>
                 </td>
               </tr>

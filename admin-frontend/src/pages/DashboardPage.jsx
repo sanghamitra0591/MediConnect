@@ -15,7 +15,6 @@ function DashboardPage() {
     const fetchDoctor = async () => {
       if (userType === 'doctor') {
         try {
-          // Fetch current doctor info (assuming /api/doctors/me returns current doctor)
           const res = await get('/api/doctors/me');
           setDoctor(res.doctor);
         } catch (err) {

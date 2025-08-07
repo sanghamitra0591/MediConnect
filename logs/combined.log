@@ -80,3 +80,25 @@
 {"level":"info","message":"Emitting sessionUpdate event: type=completed, sessionId=6894894409da74cb44ae7c89","timestamp":"2025-08-07T11:09:18.892Z"}
 {"level":"info","message":"Emitting doctorStatus event: doctorId=68946b17fcafba1249c76b26, status=available","timestamp":"2025-08-07T11:09:18.893Z"}
 {"level":"info","message":"Session completed successfully: sessionId=6894894409da74cb44ae7c89","timestamp":"2025-08-07T11:09:18.893Z"}
+{"level":"info","message":"Session initiation request: deviceId=1, doctorId=68946b17fcafba1249c76b26, patientName=pll","timestamp":"2025-08-07T11:29:15.647Z"}
+{"level":"info","message":"Device found: deviceId=1, status=active","timestamp":"2025-08-07T11:29:15.922Z"}
+{"level":"info","message":"Doctor found by ID: doctorId=68946b17fcafba1249c76b26, name=doctor 1, status=available, isOnline=true","timestamp":"2025-08-07T11:29:16.679Z"}
+{"level":"info","message":"Setting device status to busy: deviceId=1","timestamp":"2025-08-07T11:29:16.977Z"}
+{"level":"info","message":"Setting doctor status to busy: doctorId=68946b17fcafba1249c76b26, previous status=available, isOnline=true","timestamp":"2025-08-07T11:29:16.978Z"}
+{"level":"info","message":"Doctor status after update: doctorId=68946b17fcafba1249c76b26, status=busy, isOnline=true","timestamp":"2025-08-07T11:29:17.538Z"}
+{"level":"info","message":"Session created: sessionId=68948e0d990bd5ff0f551558","timestamp":"2025-08-07T11:29:17.808Z"}
+{"level":"info","message":"Emitting sessionUpdate event: type=initiated, sessionId=68948e0d990bd5ff0f551558","timestamp":"2025-08-07T11:29:17.808Z"}
+{"level":"info","message":"Emitting doctorStatus event: doctorId=68946b17fcafba1249c76b26, status=busy, isOnline=true","timestamp":"2025-08-07T11:29:17.809Z"}
+{"level":"info","message":"Session initiated successfully: sessionId=68948e0d990bd5ff0f551558, deviceId=1, doctorId=68946b17fcafba1249c76b26","timestamp":"2025-08-07T11:29:17.809Z"}
+{"level":"info","message":"Emitting delayed doctorStatus event: doctorId=68946b17fcafba1249c76b26, status=busy","timestamp":"2025-08-07T11:29:18.310Z"}
+{"level":"info","message":"Session cancellation request: sessionId=68948e0d990bd5ff0f551558","timestamp":"2025-08-07T11:29:43.700Z"}
+{"level":"info","message":"Session found: sessionId=68948e0d990bd5ff0f551558, status=active, doctorId=68946b17fcafba1249c76b26, deviceId=undefined","timestamp":"2025-08-07T11:29:44.247Z"}
+{"level":"info","message":"Session status updated to cancelled: sessionId=68948e0d990bd5ff0f551558","timestamp":"2025-08-07T11:29:44.520Z"}
+{"level":"info","message":"Updating doctor status: doctorId=68946b17fcafba1249c76b26, current status=busy, setting to=available","timestamp":"2025-08-07T11:29:44.797Z"}
+{"level":"info","message":"Doctor status after update: doctorId=68946b17fcafba1249c76b26, status=available, isOnline=true","timestamp":"2025-08-07T11:29:45.353Z"}
+{"level":"warn","message":"Device not found for session: sessionId=68948e0d990bd5ff0f551558, deviceId=undefined","timestamp":"2025-08-07T11:29:45.638Z"}
+{"level":"info","message":"Emitting doctorStatus event: doctorId=68946b17fcafba1249c76b26, status=available","timestamp":"2025-08-07T11:29:45.638Z"}
+{"level":"info","message":"Emitting sessionUpdate event: type=cancelled, sessionId=68948e0d990bd5ff0f551558","timestamp":"2025-08-07T11:29:45.638Z"}
+{"level":"info","message":"Session cancelled successfully: sessionId=68948e0d990bd5ff0f551558","timestamp":"2025-08-07T11:29:45.639Z"}
+{"level":"info","message":"Device registered: 1","timestamp":"2025-08-07T11:29:58.762Z"}
+{"level":"info","message":"Doctor registered: doctor1@gmail.com","timestamp":"2025-08-07T11:31:36.472Z"}

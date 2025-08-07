@@ -77,11 +77,50 @@
 
 ## WebSocket Events (Socket.IO)
 - Connect to the backend server at the same port as HTTP (e.g., `ws://localhost:5000`)
-- **doctorStatus**: `{ doctorId, isOnline }` — Emitted on doctor login/logout/availability change
-- **sessionUpdate**: `{ type: 'initiated'|'completed'|'cancelled', session }` — Emitted on session lifecycle changes
+- **doctorStatus**: Emitted on doctor status changes
+  - Payload: `{ doctorId, status, isOnline }` 
+  - Emitted during doctor login/logout and availability toggle
+  - Emitted during session initiation/completion (affecting doctor status)
+  - Features delayed re-emission (500ms) to ensure client synchronization
+  - Uses global `emitDoctorStatus` function for consistent emission
+  - Includes comprehensive logging for troubleshooting
+- **sessionUpdate**: Emitted on session lifecycle changes
+  - Payload: `{ type: 'initiated'|'completed'|'cancelled', session }` 
+  - Includes complete session object with doctor and device details
+  - Automatically updates related doctor and device statuses
+  - Logs detailed information about session changes
+
+## Real-time Status Updates
+
+### Doctor Status Management
+- Doctor status is tracked in real-time across the application
+- Status changes occur during:
+  - Login/logout (isOnline toggle)
+  - Availability toggle (status change between 'available' and 'unavailable')
+  - Session initiation/completion (status change between 'available' and 'busy')
+- Status updates are broadcast via Socket.IO to all connected clients
+- Enhanced reliability features:
+  - Delayed re-emission to ensure client synchronization
+  - Parallel saving of related entities (doctor and device)
+  - Verification of status after saving
+  - Comprehensive logging throughout the process
+
+### Session Lifecycle Management
+- Sessions go through three states: initiated, completed, cancelled
+- Each state change triggers:
+  - Updates to related doctor and device statuses
+  - Real-time notifications via Socket.IO
+  - Database updates with timestamps
+- Enhanced implementation features:
+  - Parallel saving of related entities
+  - Verification of status changes
+  - Delayed re-emission of status updates
+  - Comprehensive logging for debugging
 
 ## Logging & Audit
 - All key actions are logged to `logs/combined.log` and `logs/error.log`.
+- Enhanced logging for Socket.IO events and status changes
+- Component-specific logging with unique identifiers
 
 ## Environment Variables
 - See `.env.example` for required variables.

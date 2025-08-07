@@ -1,6 +1,6 @@
 # MediConnect - Telemedicine Platform
 
-A full-stack telemedicine platform with real-time doctor-patient interactions, pharmacy device registration, and comprehensive admin dashboard.
+A full-stack telemedicine platform with real-time doctor-patient interactions, pharmacy device registration, and comprehensive admin dashboard. The platform features robust real-time status updates for doctors and sessions, ensuring seamless communication between all components of the system.
 
 ## 🚀 Features
 
@@ -9,13 +9,22 @@ A full-stack telemedicine platform with real-time doctor-patient interactions, p
 - **JWT Authentication** for secure access
 - **MongoDB** with Mongoose ORM
 - **WebSocket Integration** (Socket.IO) for real-time updates
+  - Reliable doctor status synchronization across clients
+  - Immediate session lifecycle event broadcasting
+  - Enhanced error handling and reconnection logic
 - **Comprehensive Logging** and audit trail
 - **Docker Support** for easy deployment
 
 ### Frontend (React/Vite)
 - **Modern Admin Dashboard** with real-time updates
 - **Beautiful UI** with SCSS styling
+- **Real-time Doctor Status Tracking**
+  - Instant visual updates when doctors go online/offline
+  - Automatic status synchronization across all clients
+  - Reliable status persistence during session management
 - **Session Management** with complete/cancel actions
+  - Automatic doctor availability updates during session lifecycle
+  - Real-time session status updates across all clients
 - **Device Activity Map** with GPS coordinates
 - **Responsive Design** for all devices
 
@@ -146,7 +155,14 @@ A full-stack telemedicine platform with real-time doctor-patient interactions, p
 
 ### WebSocket Events
 - `doctorStatus` - Doctor online/offline updates
+  - Payload: `{ doctorId, status, isOnline }` 
+  - Emitted when doctors log in/out or change availability
+  - Emitted when sessions are initiated/completed (affecting doctor status)
+  - Includes delayed re-emission to ensure client synchronization
 - `sessionUpdate` - Session lifecycle events
+  - Payload: `{ type: 'initiated'|'completed'|'cancelled', session }` 
+  - Includes complete session object with doctor and device details
+  - Triggers automatic UI updates across all connected clients
 
 ## 🎯 Usage
 
@@ -169,30 +185,58 @@ A full-stack telemedicine platform with real-time doctor-patient interactions, p
 
 ### Session Management
 1. Initiate sessions from pharmacy devices
+   - Automatically assigns available doctors
+   - Updates doctor status to 'busy' in real-time
+   - Updates device status to 'busy' in real-time
 2. Match patients with available doctors
+   - Smart matching algorithm based on doctor availability
+   - Prevents double-booking through real-time status tracking
 3. Monitor session progress in real-time
+   - Live updates across all connected admin dashboards
+   - Consistent state management through Socket.IO events
 4. Complete or cancel sessions as needed
+   - Automatically updates doctor status back to 'available'
+   - Automatically updates device status back to 'available'
+   - Broadcasts status changes to all connected clients
 
 ## 📁 Project Structure
 
 ```
 mediconnect/
 ├── backend/                 # Node.js/Express API
-│   ├── src/
-│   │   ├── controllers/    # API controllers
-│   │   ├── models/         # Mongoose models
-│   │   ├── routes/         # API routes
-│   │   ├── middleware/     # Auth middleware
-│   │   ├── services/       # Business logic
-│   │   └── utils/          # Utilities
+│   ├── controllers/        # API controllers
+│   │   ├── adminController.js    # Admin-related endpoints
+│   │   ├── doctorController.js   # Doctor management and status updates
+│   │   ├── deviceController.js   # Device registration and management
+│   │   └── sessionController.js  # Session lifecycle management
+│   ├── models/             # Mongoose models
+│   │   ├── Admin.js        # Admin user schema
+│   │   ├── Doctor.js       # Doctor schema with status tracking
+│   │   ├── Device.js       # Pharmacy device schema
+│   │   └── Session.js      # Session schema with lifecycle states
+│   ├── routes/             # API routes
+│   ├── middleware/         # Auth middleware
+│   ├── server.js           # Express and Socket.IO setup
+│   ├── socket.js           # Socket.IO event handlers
+│   ├── utils/              # Utilities and logging
 │   ├── Dockerfile
 │   └── README.md
 ├── admin-frontend/          # React admin dashboard
 │   ├── src/
 │   │   ├── components/     # UI components
+│   │   │   ├── DoctorsTable.jsx  # Real-time doctor status display
+│   │   │   ├── SessionsTable.jsx # Real-time session management
+│   │   │   └── DeviceMap.jsx     # Device location display
 │   │   ├── pages/          # Page components
+│   │   │   ├── LoginPage.jsx     # Admin authentication
+│   │   │   └── DashboardPage.jsx # Main dashboard view
 │   │   ├── services/       # API services
+│   │   │   ├── api.js           # API communication
+│   │   │   └── socket.js        # Socket.IO client setup
+│   │   ├── hooks/          # Custom React hooks
+│   │   │   └── useSocket.js     # Socket event management hook
 │   │   ├── context/        # React context
+│   │   │   └── AuthContext.jsx  # Authentication state
 │   │   └── styles/         # SCSS styles
 │   └── README.md
 ├── docker-compose.yml       # Backend and MongoDB setup

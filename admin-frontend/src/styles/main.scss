@@ -30,6 +30,7 @@ $border-color: #e2e8f0;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
+  margin: 0px 10px;
   
   &:hover {
     transform: translateY(-1px);
@@ -52,7 +53,7 @@ body {
 
 // Layout
 .container {
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -123,6 +124,8 @@ body {
   
   input {
     width: 100%;
+    background-color: white;
+    color: #000;
     padding: 0.75rem;
     border: 1px solid $border-color;
     border-radius: 6px;
@@ -143,6 +146,7 @@ body {
   &-primary {
     background-color: $primary-color;
     color: white;
+    width: 15rem;
     
     &:hover {
       background-color: color.adjust($primary-color, $lightness: -10%);
@@ -402,4 +406,4 @@ body {
   .device-list {
     max-width: 100%;
   }
-} 
+}

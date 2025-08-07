@@ -177,7 +177,7 @@ function DeviceTable() {
                 <td>{device.gps?.lng?.toFixed(4) || '-'}</td>
                 <td>{device.status || '-'}</td>
                 <td>
-                  <button className="btn btn-sm" onClick={() => openEditModal(device)}>Edit</button>
+                  <button className="btn btn-sm btn-secondary" onClick={() => openEditModal(device)}>Edit</button>
                   <button className="btn btn-sm btn-danger" onClick={() => handleDelete(device._id)}>Delete</button>
                 </td>
               </tr>
