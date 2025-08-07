@@ -18,7 +18,9 @@ function DashboardPage() {
           const res = await get('/api/doctors/me');
           setDoctor(res.doctor);
         } catch (err) {
-          // handle error
+          console.error('Error fetching doctor profile:', err);
+          // Display a user-friendly message
+          alert('Failed to load your profile. Please try refreshing the page.');
         }
       }
     };
@@ -31,7 +33,8 @@ function DashboardPage() {
       const res = await patch('/api/doctors/availability');
       setDoctor((prev) => ({ ...prev, isOnline: res.isOnline }));
     } catch (err) {
-      // handle error
+      console.error('Error toggling availability status:', err);
+      alert('Failed to update your availability status. Please try again.');
     }
   };
 

@@ -2,6 +2,10 @@
 
 A full-stack telemedicine platform with real-time doctor-patient interactions, pharmacy device registration, and comprehensive admin dashboard. The platform features robust real-time status updates for doctors and sessions, ensuring seamless communication between all components of the system.
 
+## Deployed URL
+- Frontend - https://medi-connect-seven-umber.vercel.app/login
+- Backend - 
+
 ## 🚀 Features
 
 ### Backend (Node.js/Express)
