@@ -102,3 +102,32 @@
 {"level":"info","message":"Session cancelled successfully: sessionId=68948e0d990bd5ff0f551558","timestamp":"2025-08-07T11:29:45.639Z"}
 {"level":"info","message":"Device registered: 1","timestamp":"2025-08-07T11:29:58.762Z"}
 {"level":"info","message":"Doctor registered: doctor1@gmail.com","timestamp":"2025-08-07T11:31:36.472Z"}
+{"level":"info","message":"Doctor registered: doctor1@gmail.com","timestamp":"2025-08-07T12:19:13.474Z"}
+{"level":"info","message":"Device registered: 1","timestamp":"2025-08-07T12:19:29.931Z"}
+{"level":"info","message":"Doctor registered: doctor2@gmail.com","timestamp":"2025-08-07T12:19:47.074Z"}
+{"level":"info","message":"Device registered: 2","timestamp":"2025-08-07T12:20:03.985Z"}
+{"level":"info","message":"Doctor registered: doctor1@gmail.com","timestamp":"2025-08-07T12:24:10.758Z"}
+{"level":"info","message":"Doctor registered: doctor2@gmail.com","timestamp":"2025-08-07T12:24:28.348Z"}
+{"level":"info","message":"Device registered: 1","timestamp":"2025-08-07T12:24:47.203Z"}
+{"level":"info","message":"Doctor availability toggled: doctor1@gmail.com, isOnline: false","timestamp":"2025-08-07T12:26:18.460Z"}
+{"level":"info","message":"Doctor availability toggled: doctor1@gmail.com, isOnline: true","timestamp":"2025-08-07T12:26:21.896Z"}
+{"level":"info","message":"Session initiation request: deviceId=1, doctorId=68949aea72175028975f7da4, patientName=patient 1","timestamp":"2025-08-07T12:27:21.593Z"}
+{"level":"info","message":"Device found: deviceId=1, status=active","timestamp":"2025-08-07T12:27:21.862Z"}
+{"level":"info","message":"Doctor found by ID: doctorId=68949aea72175028975f7da4, name=doctor 1, status=available, isOnline=true","timestamp":"2025-08-07T12:27:22.388Z"}
+{"level":"info","message":"Setting device status to busy: deviceId=1","timestamp":"2025-08-07T12:27:22.643Z"}
+{"level":"info","message":"Setting doctor status to busy: doctorId=68949aea72175028975f7da4, previous status=available, isOnline=true","timestamp":"2025-08-07T12:27:22.643Z"}
+{"level":"info","message":"Doctor status after update: doctorId=68949aea72175028975f7da4, status=busy, isOnline=true","timestamp":"2025-08-07T12:27:23.140Z"}
+{"level":"info","message":"Session created: sessionId=68949bab72175028975f7e1c","timestamp":"2025-08-07T12:27:23.403Z"}
+{"level":"info","message":"Emitting sessionUpdate event: type=initiated, sessionId=68949bab72175028975f7e1c","timestamp":"2025-08-07T12:27:23.404Z"}
+{"level":"info","message":"Emitting doctorStatus event: doctorId=68949aea72175028975f7da4, status=busy, isOnline=true","timestamp":"2025-08-07T12:27:23.404Z"}
+{"level":"info","message":"Session initiated successfully: sessionId=68949bab72175028975f7e1c, deviceId=1, doctorId=68949aea72175028975f7da4","timestamp":"2025-08-07T12:27:23.404Z"}
+{"level":"info","message":"Emitting delayed doctorStatus event: doctorId=68949aea72175028975f7da4, status=busy","timestamp":"2025-08-07T12:27:23.905Z"}
+{"level":"info","message":"Session completion request: sessionId=68949bab72175028975f7e1c","timestamp":"2025-08-07T12:27:56.832Z"}
+{"level":"info","message":"Session found: sessionId=68949bab72175028975f7e1c, status=active, doctorId=68949aea72175028975f7da4, deviceId=68949b0e72175028975f7daf","timestamp":"2025-08-07T12:27:57.397Z"}
+{"level":"info","message":"Session status updated to completed: sessionId=68949bab72175028975f7e1c","timestamp":"2025-08-07T12:27:57.683Z"}
+{"level":"info","message":"Updating doctor status: doctorId=68949aea72175028975f7da4, current status=busy, setting to=available","timestamp":"2025-08-07T12:27:57.952Z"}
+{"level":"info","message":"Doctor status after update: doctorId=68949aea72175028975f7da4, status=available, isOnline=true","timestamp":"2025-08-07T12:27:58.492Z"}
+{"level":"info","message":"Updating device status: deviceId=1, current status=busy, setting to=active","timestamp":"2025-08-07T12:27:58.779Z"}
+{"level":"info","message":"Emitting sessionUpdate event: type=completed, sessionId=68949bab72175028975f7e1c","timestamp":"2025-08-07T12:27:59.050Z"}
+{"level":"info","message":"Emitting doctorStatus event: doctorId=68949aea72175028975f7da4, status=available","timestamp":"2025-08-07T12:27:59.050Z"}
+{"level":"info","message":"Session completed successfully: sessionId=68949bab72175028975f7e1c","timestamp":"2025-08-07T12:27:59.051Z"}
