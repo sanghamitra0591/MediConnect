@@ -24,7 +24,11 @@ export const useApi = () => {
   const get = useCallback((url) => callApi('get', url), [callApi]);
   const post = useCallback((url, data) => callApi('post', url, data), [callApi]);
   const patch = useCallback((url, data) => callApi('patch', url, data), [callApi]);
-  const del = useCallback((url) => callApi('delete', url), [callApi]);
+  // Explicitly define the delete function to ensure it works correctly
+  const deleteFunc = useCallback((url) => {
+    console.log('Delete function called with URL:', url);
+    return callApi('delete', url);
+  }, [callApi]);
 
   return {
     loading,
@@ -32,7 +36,8 @@ export const useApi = () => {
     get,
     post,
     patch,
-    delete: del,
+    del: deleteFunc, // Use the explicit delete function
+    delete: deleteFunc, // Provide both del and delete for compatibility
     clearError: () => setError(null),
   };
-}; 
+};

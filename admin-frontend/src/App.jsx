@@ -5,6 +5,7 @@ import DashboardPage from './pages/DashboardPage';
 import ErrorBoundary from './components/ErrorBoundary';
 import LoadingSpinner from './components/LoadingSpinner';
 import './styles/main.scss';
+import SignupPage from './pages/SignupPage';
 
 function AppRoutes() {
   const { isAuthenticated, loading } = useAuth();
@@ -20,6 +21,8 @@ function AppRoutes() {
         path="/dashboard"
         element={isAuthenticated ? <DashboardPage /> : <Navigate to="/login" />}
       />
+      <Route path="/signup" element={<SignupPage />} />
+
       <Route path="*" element={<Navigate to={isAuthenticated ? '/dashboard' : '/login'} />} />
     </Routes>
   );

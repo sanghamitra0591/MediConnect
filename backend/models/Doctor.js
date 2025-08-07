@@ -7,6 +7,7 @@ const doctorSchema = new mongoose.Schema({
   password: { type: String, required: true },
   specialization: { type: String },
   isOnline: { type: Boolean, default: false },
+  status: { type: String, enum: ['available', 'busy', 'offline'], default: 'available' },
 }, { timestamps: true });
 
 doctorSchema.pre('save', async function (next) {

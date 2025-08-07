@@ -19,10 +19,16 @@ const doctorRoutes = require('./routes/doctorRoutes');
 const deviceRoutes = require('./routes/deviceRoutes');
 const sessionRoutes = require('./routes/sessionRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+
 app.use('/api/doctors', doctorRoutes);
 app.use('/api/devices', deviceRoutes);
 app.use('/api/sessions', sessionRoutes);
 app.use('/api/admin', adminRoutes);
+
+// Unified login route (should be accessible at /api/login)
+const adminController = require('./controllers/adminController');
+app.post('/api/login', adminController.unifiedLogin);
+app.post('/api/admin/signup', adminController.signup);
 
 // Health check
 app.get('/api/health', (req, res) => {

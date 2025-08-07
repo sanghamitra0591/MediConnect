@@ -1,41 +1,56 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import { useApi } from '../hooks/useApi';
 import { API_ENDPOINTS } from '../utils/constants';
-import '../styles/main.scss';
 
-function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function SignupPage() {
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+
   const navigate = useNavigate();
-  const { login } = useAuth();
   const { post, loading, error, clearError } = useApi();
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     clearError();
     try {
-      const data = await post(API_ENDPOINTS.LOGIN, { email, password });
-      login(data.token, data.userType);
-      navigate('/dashboard');
+      await post(API_ENDPOINTS.ADMIN_SIGNUP, form);
+      navigate('/login'); // Redirect to login after successful signup
     } catch (err) {
-      // Error is handled by useApi hook
-      console.error('Login failed:', err);
+      console.error('Signup failed:', err);
     }
   };
 
   return (
     <div className="login-container">
       <div className="login-card">
-        <h2 className="login-title">Admin Login</h2>
+        <h2 className="login-title">Admin Signup</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={form.name}
+              onChange={handleChange}
+              required
+              disabled={loading}
+            />
+          </div>
+          <div className="form-group">
+            <input
               type="email"
+              name="email"
               placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={form.email}
+              onChange={handleChange}
               required
               disabled={loading}
             />
@@ -43,9 +58,10 @@ function LoginPage() {
           <div className="form-group">
             <input
               type="password"
+              name="password"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={form.password}
+              onChange={handleChange}
               required
               disabled={loading}
             />
@@ -55,17 +71,13 @@ function LoginPage() {
             className="btn btn-primary btn-full-width"
             disabled={loading}
           >
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? 'Signing up...' : 'Sign Up'}
           </button>
           {error && <p className="login-error">{error}</p>}
-          <p className="login-link">
-            Don't have an account? <a href="/signup">Sign up</a>
-          </p>
-
         </form>
       </div>
     </div>
   );
 }
 
-export default LoginPage;
+export default SignupPage;

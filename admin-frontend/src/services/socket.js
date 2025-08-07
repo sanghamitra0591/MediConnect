@@ -1,4 +1,5 @@
 import { io } from 'socket.io-client';
+import { SOCKET_EVENTS } from '../utils/constants';
 
 class SocketService {
   constructor() {
@@ -9,37 +10,53 @@ class SocketService {
   connect() {
     if (this.socket) return;
 
-    this.socket = io(import.meta.env.VITE_API_URL || 'http://localhost:5000', {
+    console.log('Attempting to connect to socket server');
+    this.socket = io(import.meta.env.VITE_API_URL || 'http://localhost:5001', {
       transports: ['websocket', 'polling'],
     });
 
     this.socket.on('connect', () => {
-      console.log('Connected to Socket.IO server');
+      console.log('Connected to Socket.IO server with ID:', this.socket.id);
     });
 
-    this.socket.on('disconnect', () => {
-      console.log('Disconnected from Socket.IO server');
+    this.socket.on('disconnect', (reason) => {
+      console.log('Disconnected from Socket.IO server. Reason:', reason);
     });
 
-    // Listen for doctor status updates
+    this.socket.on('connect_error', (error) => {
+      console.error('Socket connection error:', error);
+    });
+
+    // Listen for doctor status updates with enhanced logging
     this.socket.on('doctorStatus', (data) => {
+      console.log('SOCKET DIRECT EVENT - Doctor status update received:', {
+        doctorId: data.doctorId,
+        status: data.status,
+        isOnline: data.isOnline
+      });
       this.notifyListeners('doctorStatus', data);
     });
 
-    // Listen for session updates
+    // Listen for session updates with enhanced logging
     this.socket.on('sessionUpdate', (data) => {
+      console.log('SOCKET DIRECT EVENT - Session update received:', {
+        type: data.type,
+        sessionId: data.session?._id
+      });
       this.notifyListeners('sessionUpdate', data);
     });
   }
 
   disconnect() {
     if (this.socket) {
+      console.log('Disconnecting socket');
       this.socket.disconnect();
       this.socket = null;
     }
   }
 
   addListener(event, callback) {
+    console.log(`Registering listener for event: ${event}`);
     if (!this.listeners.has(event)) {
       this.listeners.set(event, []);
     }
@@ -47,6 +64,7 @@ class SocketService {
   }
 
   removeListener(event, callback) {
+    console.log(`Removing listener for event: ${event}`);
     if (this.listeners.has(event)) {
       const callbacks = this.listeners.get(event);
       const index = callbacks.indexOf(callback);
@@ -63,4 +81,4 @@ class SocketService {
   }
 }
 
-export default new SocketService(); 
+export default new SocketService();

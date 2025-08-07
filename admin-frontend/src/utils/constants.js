@@ -1,9 +1,9 @@
 // API Endpoints
 export const API_ENDPOINTS = {
-  // Authentication
-  ADMIN_LOGIN: '/api/admin/login',
+  // Unified Authentication
+  LOGIN: '/api/login',
+  ADMIN_SIGNUP: '/api/admin/signup',
   DOCTOR_REGISTER: '/api/doctors/register',
-  DOCTOR_LOGIN: '/api/doctors/login',
   DOCTOR_LOGOUT: '/api/doctors/logout',
   DOCTOR_AVAILABILITY: '/api/doctors/availability',
   
@@ -20,6 +20,8 @@ export const API_ENDPOINTS = {
   ONLINE_DOCTORS: '/api/admin/online-doctors',
   ACTIVE_SESSIONS: '/api/admin/active-sessions',
   DEVICES: '/api/admin/devices',
+  AVAILABLE_DOCTORS: '/api/doctors/available',
+  AVAILABLE_DEVICES: '/api/devices/available',
   
   // Health Check
   HEALTH: '/api/health',
@@ -52,5 +54,5 @@ export const STORAGE_KEYS = {
 
 // Environment Variables
 export const ENV = {
-  API_URL: import.meta.env.VITE_API_URL || 'http://localhost:5000',
-}; 
+  API_URL: import.meta.env.VITE_API_URL || 'http://localhost:5001',
+};
