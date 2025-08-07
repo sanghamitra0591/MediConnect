@@ -75,9 +75,8 @@ A full-stack telemedicine platform with real-time doctor-patient interactions, p
    ```
 
 4. Access the application:
-   - Frontend: http://localhost:5173
+   - Frontend: https://medi-connect-seven-umber.vercel.app/login
    - Backend API: http://localhost:5000
-   - MongoDB: localhost:27017
 
 ### Option 2: Full Local Development
 
